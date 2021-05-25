@@ -58,4 +58,27 @@ Where continent is not null
 Group by continent
 order by Total_Death_Count desc
 
+-- GLOBAL NUMBERS
+
+Select SUM(new_cases) as total_cases, SUM(cast(new_deaths as int)) as total_deaths, SUM(cast(new_deaths as int))/SUM(New_Cases)*100 as Death_Percentage
+From [Covid_database].[dbo].[Covid_deaths$]
+where continent is not null 
+--Group By date
+order by 1,2
+
+
+
+-- Total Population vs Vaccinations
+-- Shows Percentage of Population that has recieved at least one Covid Vaccine
+
+Select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations
+, SUM(CONVERT(int,vac.new_vaccinations)) OVER (Partition by dea.Location Order by dea.location, dea.Date) as Rolling_People_Vaccinated
+--, (Rolling_People_Vaccinated/population)*100
+From Covid_deaths$ dea
+Join Covid_vaccinations$ vac
+on dea.location = vac.location
+and dea.date = vac. date
+where dea.continent is not null 
+order by 2,3
+
 
