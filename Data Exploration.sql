@@ -46,7 +46,7 @@ Select Location, MAX(cast(Total_deaths as int)) as Total_Death_Count
 From [Covid_database].[dbo].[Covid_deaths$]
 Where continent is not null 
 Group by Location
-order by TotalDeathCount desc
+order by Total_Death_Count desc
 
 -- BREAKING THINGS DOWN BY CONTINENT
 
