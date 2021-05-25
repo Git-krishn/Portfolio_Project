@@ -21,7 +21,7 @@ order by 1,2
 
 Select Location, date, total_cases,total_deaths, (total_deaths/total_cases)*100 as Death_Percentage
 From [Covid_database].[dbo].[Covid_deaths$]
-Where location = "INDIA"
+Where location = 'India'
 and continent is not null 
 order by 1,2
 
